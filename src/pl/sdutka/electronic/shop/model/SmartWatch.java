@@ -1,4 +1,4 @@
-package pl.sdutka.electronic.shop.categories;
+package pl.sdutka.electronic.shop.model;
 
 public class SmartWatch extends Device{
     public SmartWatch(String brand, String model, int productionYear, String color, int RAM, int builtInMemory, double screenSize, double price, int productsAmount) {

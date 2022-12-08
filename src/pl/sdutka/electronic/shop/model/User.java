@@ -1,6 +1,5 @@
-package pl.sdutka.electronic.shop.categories;
+package pl.sdutka.electronic.shop.model;
 
-import javax.management.relation.Role;
 import java.util.UUID;
 
 public class User {
@@ -55,17 +54,28 @@ public class User {
 
     @Override
     public String toString() {
-        return new StringBuilder().append("User")
-                .append("login='")
+        return new StringBuilder()
+                .append("login")
+                .append("\t")
+                .append("password")
+                .append("\t")
+                .append("\t")
+                .append("\t")
+                .append("\t")
+                .append("\t")
+                .append("\t")
+                .append("\t")
+                .append("role")
+                .append("\t")
+                .append("User ID")
+                .append("\t")
+                .append("\n")
                 .append(login)
-                .append('\'')
-                .append(", password='")
+                .append("\t")
                 .append(password)
-                .append('\'')
-                .append(", role=")
+                .append("\t")
                 .append(role)
-                .append(", iD='")
-                .append(iD)
-                .append('\'').toString();
+                .append("\t")
+                .append(iD).toString();
     }
 }

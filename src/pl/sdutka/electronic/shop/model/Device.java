@@ -1,9 +1,8 @@
-package pl.sdutka.electronic.shop.categories;
-//Dodaj jeszcze jeden konstruktor strikte dla konsoli i tv, dodaj kolor, oraz dodatkowe parametry
+package pl.sdutka.electronic.shop.model;
 public class Device {
     private String brand;
     private String model;
-    private String color; // PAMIETAJ ABY DODAC DO KONSTRUKTORA I POTEM POZMIENIAC TEZ W RESZCIE!!!!!
+    private String color;
     private int productionYear;
     private double price;
     private int productsAmount;
@@ -98,19 +97,25 @@ public class Device {
 
     @Override
     public String toString() {
-        return "Brand: " +
-                this.getBrand() +
-                " Model: " +
-                this.getModel() +
-                " Rocznik: " +
-                this.getProductionYear() +
-                " Cena[PLN]: " +
-                this.getPrice() +
-                " Pamięć RAM [MB]: " +
-                this.getRAM() +
-                " Wbudowana pamięć [GB]: " +
-                this.getBuiltInMemory() +
-                " Dostepna Ilosc: " +
-                this.getProductsAmount();
+        return new StringBuilder()
+                .append("Brand: ")
+                .append(brand)
+                .append(" Model: ")
+                .append(model)
+                .append(" Production Year: ")
+                .append(productionYear)
+                .append(" Color: ")
+                .append(color)
+                .append(" RAM [GB]: ")
+                .append(RAM)
+                .append(" Memory [GB]: ")
+                .append(builtInMemory)
+                .append(" Screen Size [cal]: ")
+                .append(screenSize)
+                .append(" Price [PLN]: ")
+                .append(price)
+                .append(" Quantity: ")
+                .append(productsAmount)
+                .append(" ").toString();
     }
 }

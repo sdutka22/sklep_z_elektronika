@@ -1,11 +1,10 @@
 package pl.sdutka.electronic.shop.root;
 
-import pl.sdutka.electronic.shop.categories.User;
+import pl.sdutka.electronic.shop.model.User;
 import pl.sdutka.electronic.shop.database.ProductDB;
 import pl.sdutka.electronic.shop.database.UserDB;
 import pl.sdutka.electronic.shop.gui.GUI;
 
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -33,10 +32,10 @@ public class Root {
                 case "1" -> {
                     User user = GUI.readNewLoginAndPassword();
                     if(!Auth.validate(user)){
-                        System.out.println("Wprowadzono zły login lub hasło poprawny login oraz haslo składa sie z min 5 liter,");
+                        System.out.println("Wrong login or password entered. Valid login and password consist of at least 5 letters,");
                     }else{
                         if(Auth.doesExist(user, this.auth.userDB)){
-                            System.out.println("Konto o podanym loginie już istnieje");
+                            System.out.println("An account with the given login already exists");
                         }else{
                             this.auth.userDB.addNewUser(user);
                         }
@@ -46,7 +45,6 @@ public class Root {
                     while(!isRunning && counter < 3) {
                         this.auth.authentication(GUI.readLoginAndPassword());
                         isRunning = this.auth.getLoggedUser() != null;
-                        System.out.println(isRunning);
                         if(!isRunning) {
                             System.out.println("Not authorized !!");
                         }
@@ -64,41 +62,36 @@ public class Root {
                     case "1" -> GUI.listOfDevices(productDB.getDevices());
                     case "2" -> GUI.showBuyResult(productDB.buyDevice(GUI.readProduct()));
                     case "3" -> {
+                        this.auth.logOut();
+                        isRunning = false;
+                    }
+                    case "4" -> {
                         if(this.auth.getLoggedUser() != null && this.auth.getLoggedUser().getRole() == User.Role.ADMIN) {
                             productDB.increaseAmountOfExistingDevice(GUI.readAmountOfProductToBuy());
                         }
                     }
-                    case "4" -> {
+                    case "5" -> {
                         if(this.auth.getLoggedUser() != null && this.auth.getLoggedUser().getRole() == User.Role.ADMIN) {
                             productDB.addNewDevice(GUI.readNewDeviceData());
                         }
                     }
-                    case "5" -> {
-                        if(this.auth.getLoggedUser() != null && this.auth.getLoggedUser().getRole() == User.Role.ADMIN) {
-                            System.out.println("Zmieniasz usera na admina czy chcesz kontynuować");
-                            String choose = scanner.nextLine();
-                            if (Objects.equals(choose, "Y")) {
-                                System.out.println("Podaj login");
-                                String login = scanner.nextLine();
-                                this.auth.userDB.setUserAsAdmin(login, GUI.readUsertoAdmin());
-                            }
-                        }
-                    }
                     case "6" -> {
                         if(this.auth.getLoggedUser() != null && this.auth.getLoggedUser().getRole() == User.Role.ADMIN) {
-                            GUI.listOfUsersAndAdmins(userDB.getUsers());
+                            System.out.println("Podaj login");
+                            String login = scanner.nextLine();
+                            this.auth.userDB.setUserAsAdmin(login, GUI.readUsertoAdmin());
                         }
                     }
                     case "7" -> {
-                        this.auth.logOut();
-                        isRunning = false;
+                        if(this.auth.getLoggedUser() != null && this.auth.getLoggedUser().getRole() == User.Role.ADMIN) {
+                            GUI.listOfUsersAndAdmins(userDB.getUsers());
+                        }
                     }
 
                     default -> System.out.println("Wrong choose!! choose again");
                 }
             }
         }
-
     }
     public static Root getInstance() {
         return instance;

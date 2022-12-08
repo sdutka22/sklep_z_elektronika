@@ -1,4 +1,4 @@
-package pl.sdutka.electronic.shop.categories;
+package pl.sdutka.electronic.shop.model;
 
 public class Tablet extends Device{
     private int camera;
@@ -18,9 +18,11 @@ public class Tablet extends Device{
 
     @Override
     public String toString(){
-        return super.toString() +
-                " Kamera tylna " +
-                this.getCamera() +
-                " Mpix";
+        return new StringBuilder()
+                .append(super.toString())
+                .append(" Kamera tylna ")
+                .append(camera)
+                .append(" Mpix")
+                .toString();
     }
 }

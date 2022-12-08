@@ -1,4 +1,4 @@
-package pl.sdutka.electronic.shop.categories;
+package pl.sdutka.electronic.shop.model;
 
 public class Laptop extends Device{
     private String Processor;
@@ -38,12 +38,13 @@ public class Laptop extends Device{
     }
 
     public String toString(){
-        return super.toString() +
-                " Procesor:" +
-                this.getProcessor() +
-                " Karta Graficzna:" +
-                this.getGraphicCard() +
-                " System Operacyjny: " +
-                this.getOperatingSystem();
+        return new StringBuilder()
+                .append(super.toString())
+                .append(" Processor: ")
+                .append(getProcessor())
+                .append(" Graphic Card:")
+                .append(GraphicCard)
+                .append(" Operating System: ")
+                .append(OperatingSystem).toString();
     }
 }

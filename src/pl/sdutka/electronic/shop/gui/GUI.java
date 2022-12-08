@@ -1,6 +1,6 @@
 package pl.sdutka.electronic.shop.gui;
 import org.apache.commons.codec.digest.DigestUtils;
-import pl.sdutka.electronic.shop.categories.*;
+import pl.sdutka.electronic.shop.model.*;
 import pl.sdutka.electronic.shop.database.ProductDB;
 import pl.sdutka.electronic.shop.database.UserDB;
 import pl.sdutka.electronic.shop.root.Auth;
@@ -28,23 +28,25 @@ public class GUI {
 
         System.out.println("2. Buy Product");
 
+        System.out.println("3. Log Out");
+
         if(this.auth.getLoggedUser() != null && this.auth.getLoggedUser().getRole() == User.Role.ADMIN) {
             System.out.println("4. Increase amount of existing device");
         }
 
         if(this.auth.getLoggedUser() != null && this.auth.getLoggedUser().getRole() == User.Role.ADMIN) {
-            System.out.println("4. Add new device");
+            System.out.println("5. Add new device");
         }
 
         if(this.auth.getLoggedUser() != null && this.auth.getLoggedUser().getRole() == User.Role.ADMIN) {
-            System.out.println("5. Set User as Admin");
+            System.out.println("6. Set User as Admin");
         }
 
         if(this.auth.getLoggedUser() != null && this.auth.getLoggedUser().getRole() == User.Role.ADMIN) {
-            System.out.println("6. List of users and admins");
+            System.out.println("7. List of users and admins");
         }
 
-        System.out.println("7. Log Out");
+
 
         return scanner.nextLine();
     }
@@ -57,11 +59,11 @@ public class GUI {
 
     public static String[] readProduct() {
         String[] device = new String[2];
-        System.out.println("Nazwa urzadzenia:");
+        System.out.println("Device name: ");
         String deviceName =scanner.nextLine();
         device[0] = deviceName;
 
-        System.out.println("Ile chcesz kupić:");
+        System.out.println("How much do you want to buy:");
         String deviceAmount =scanner.nextLine();
         device[1] = deviceAmount;
 
@@ -69,18 +71,16 @@ public class GUI {
     }
 
     public static void showBuyResult(boolean result) {
-        if(result) {
-            System.out.println("You Bought");
-        } else {
+        if(!result) {
             System.out.println("This product does not exist or it is out of stock now");
         }
     }
 
     public static String[] readAmountOfProductToBuy(){
         String[] device = new String[2];
-        System.out.println("Podaj do jakiego produktu chcesz dodac więcej sztuk");
+        System.out.println("Specify which product you want to add more pieces to");
         device[0] = scanner.nextLine();
-        System.out.println("Podaj ile sztuk produktu chcesz dodać");
+        System.out.println("Enter how many pieces of the product you want to add");
         device[1] = scanner.nextLine();
 
         return device;

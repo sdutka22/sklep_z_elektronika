@@ -1,6 +1,6 @@
 package pl.sdutka.electronic.shop.database;
 
-import pl.sdutka.electronic.shop.categories.*;
+import pl.sdutka.electronic.shop.model.*;
 
 public class ProductDB {
     private Device[] devices = new Device[8];
@@ -16,9 +16,6 @@ public class ProductDB {
         this.devices[4] = new Tablet("Apple", "Ipad pro", 2021, "blue", 6, 128, 12.9, 16, 2000, 20);
         this.devices[5] = new Tablet("Samsung", "Tab s8", 2022, "grey", 12, 256, 11, 20, 1500, 10);
 
-//        this.devices[6] = new Console("Xbox", "Series S", 2021, 2000, 10, 5000, 3);
-//        this.devices[7] = new Console("Sony", "Playstation 5", 2021, 2500, 5, 4000, 5);
-
         this.devices[6] = new Laptop("HP", "Pavilion Gaming TG01", 2020, "black", 32, 1000, "Intel i9", "RTX 3080", "Windows 10 pro", 16, 2000, 10);
         this.devices[7] = new Laptop("Apple", "Macbook Pro", 2021, "silver", 64, 8000, "M1 MAX", "M1 MAX", "MAC OS",16 ,10000, 2);
     }
@@ -31,7 +28,12 @@ public class ProductDB {
         for(Device device : this.devices){
             if(device.getModel().equals(deviceNameAndAmount[0]) && device.getProductsAmount() > 0){
                 int amount = device.getProductsAmount();
-                amount -= Integer.parseInt(deviceNameAndAmount[1]);
+                if(amount < Integer.parseInt(deviceNameAndAmount[1])){
+                    System.out.println("You bought " + amount + " because so much was available ");
+                    amount = 0;
+                }else{
+                    amount -= Integer.parseInt(deviceNameAndAmount[1]);
+                }
                 device.setProductsAmount(amount);
                 return true;
             }
@@ -43,7 +45,7 @@ public class ProductDB {
         for(Device device : this.devices) {
             if(device.getModel().equals(newDeviceAmount[0])) {
                 device.setProductsAmount(device.getProductsAmount() + Integer.parseInt(newDeviceAmount[1]));
-                System.out.println("Poprawnie zwiekszono ilosc isteniejacego produktu");
+                System.out.println("Properly increased amount of existing product");
             }
         }
     }

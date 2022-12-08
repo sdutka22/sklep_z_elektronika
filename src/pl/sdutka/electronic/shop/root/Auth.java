@@ -1,6 +1,6 @@
 package pl.sdutka.electronic.shop.root;
 
-import pl.sdutka.electronic.shop.categories.User;
+import pl.sdutka.electronic.shop.model.User;
 import pl.sdutka.electronic.shop.database.UserDB;
 import org.apache.commons.codec.digest.DigestUtils;
 

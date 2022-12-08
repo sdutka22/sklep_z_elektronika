@@ -1,9 +1,6 @@
 package pl.sdutka.electronic.shop.database;
 
-import pl.sdutka.electronic.shop.categories.Device;
-import pl.sdutka.electronic.shop.categories.User;
-
-import java.util.Arrays;
+import pl.sdutka.electronic.shop.model.User;
 
 public class UserDB {
 
