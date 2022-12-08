@@ -31,7 +31,6 @@ public class Auth {
 
     public static boolean validate(User user) {
         if ((user.getPassword() == null || user.getLogin() == null) || (user.getPassword().length() < 4 || user.getLogin().length() < 4)){
-            System.out.println(user.getPassword());
             return false;
         }
         return true;
