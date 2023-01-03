@@ -1,6 +1,6 @@
 package pl.sdutka.electronic.shop.model;
 
-public class SmartPhone extends Device{
+public final class SmartPhone extends Device{
     private int camera;
     public SmartPhone(String brand, String model, int productionYear, String color, int RAM, int builtInMemory, double screenSize, int camera, double price, int productsAmount) {
         super(brand, model, productionYear, color, builtInMemory, RAM, screenSize, price, productsAmount);

@@ -1,48 +1,47 @@
 package pl.sdutka.electronic.shop.database;
 
+import pl.sdutka.electronic.shop.model.Device;
 import pl.sdutka.electronic.shop.model.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UserDB {
-
-    private User[] users = new User[2];
     private static final UserDB instance = new UserDB();
+    private final List<User> users= new ArrayList<>();
 
-    public UserDB(){
-        this.users[0] = new User("admin", "eb0468abcd9f88e9844fd140fbb6acff", User.Role.ADMIN);
-        this.users[1] = new User("janusz", "6fff9bb96e12805ea3ccb8ec27e8206f", User.Role.USER);
+    private UserDB(){
+        users.add(new User("admin", "eb0468abcd9f88e9844fd140fbb6acff", User.Role.ADMIN));
+        users.add(new User("janusz", "6fff9bb96e12805ea3ccb8ec27e8206f", User.Role.USER));
     }
 
-    public User[] getUsers(){
-        return users;
+    public void getUser() {
+        System.out.println(users.stream().toList());
     }
 
     public User findByLogin(String login) {
-        for(User user : this.users) {
-            if(user.getLogin().equals(login)) {
-                return user;
-            }
-        }
-        return null;
+        return users.stream()
+                .filter(user -> login.equals(user.getLogin()))
+                .findAny()
+                .orElse(null);
     }
 
     public User setUserAsAdmin(String login, String iD) {
-        for(User user: this.users){
-            if(user.getLogin().equals(login) && user.getiD().equals(iD)){
-                user.setRole(User.Role.ADMIN);
-            }
-        }
-        return null;
-    }
-    public void addNewUser(User user) {
-        User[] newUser = new User[this.users.length + 1];
-        for(int i = 0; i < this.users.length; i++) {
-            newUser[i] = this.users[i];
-        }
-        newUser[newUser.length - 1] = user;
-        this.users = newUser;
+        return this.users.stream()
+                .filter(user -> user.getLogin().equals(login) && user.getiD().equals(iD))
+                .findFirst()
+                .map(user -> {
+                    user.setRole(User.Role.ADMIN);
+                    return user;
+                })
+                .orElse(null);
     }
 
-    public static UserDB getInstance() {
+    public void addNewUser(User user) {
+        users.add(user);
+    }
+
+    public static UserDB getInstance(){
         return instance;
     }
 }

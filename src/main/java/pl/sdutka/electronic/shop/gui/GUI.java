@@ -10,8 +10,6 @@ import java.util.Scanner;
 public class GUI {
     private static final Scanner scanner = new Scanner(System.in);
     final Auth auth = Auth.getInstance();
-    final ProductDB productDB = ProductDB.getInstance();
-    final UserDB userDB = UserDB.getInstance();
     private static final GUI instance = new GUI();
 
     private GUI() {
@@ -50,11 +48,11 @@ public class GUI {
 
         return scanner.nextLine();
     }
-
-    public static void listOfDevices(Device[] devices){
-        for(Device device : devices){
-            System.out.println(device);
-        }
+    public static void listDevices(){
+        ProductDB productDB = ProductDB.getInstance();
+        System.out.println("Name\tPrice\tQuantity");
+        productDB.getDevices();
+        System.out.println("\n");
     }
 
     public static String[] readProduct() {
@@ -149,6 +147,13 @@ public class GUI {
         return null;
     }
 
+    public static void listOfUsers(){
+        UserDB userDB = UserDB.getInstance();
+        System.out.println("Name\tPrice\tQuantity");
+        userDB.getUser();
+        System.out.println("\n");
+    }
+
     public static String readUsertoAdmin(){
         System.out.println("user ID:");
 
@@ -171,11 +176,6 @@ public class GUI {
         System.out.println("Password:");
         user.setPassword(DigestUtils.md5Hex(scanner.nextLine() + Auth.getInstance().getSeed()));
         return user;
-    }
-    public static void listOfUsersAndAdmins(User[] users){
-        for(User user : users){
-            System.out.println(user);
-        }
     }
 
     public static GUI getInstance() {

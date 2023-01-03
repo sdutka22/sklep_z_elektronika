@@ -1,5 +1,5 @@
 package pl.sdutka.electronic.shop.model;
-public class Device {
+public sealed  class Device permits SmartPhone, SmartWatch, Tablet, Laptop{
     private String brand;
     private String model;
     private String color;

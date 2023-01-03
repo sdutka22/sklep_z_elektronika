@@ -14,7 +14,6 @@ import static pl.sdutka.electronic.shop.gui.GUI.showLoginRegister;
 public class Root {
     private static final Scanner scanner = new Scanner(System.in);
     final ProductDB productDB = ProductDB.getInstance();
-    final UserDB userDB = UserDB.getInstance();
     final Auth auth = Auth.getInstance();
     final GUI gui = GUI.getInstance();
     private static final Root instance = new Root();
@@ -34,7 +33,7 @@ public class Root {
                     if(!Auth.validate(user)){
                         System.out.println("Wrong login or password entered. Valid login and password consist of at least 5 letters,");
                     }else{
-                        if(Auth.doesExist(user, this.auth.userDB)){
+                        if(Auth.doesExist(user, this.auth.userDB)) {
                             System.out.println("An account with the given login already exists");
                         }else{
                             this.auth.userDB.addNewUser(user);
@@ -59,7 +58,7 @@ public class Root {
 
             while (isRunning) {
                 switch (this.gui.showMenu()) {
-                    case "1" -> GUI.listOfDevices(productDB.getDevices());
+                    case "1" -> GUI.listDevices();
                     case "2" -> GUI.showBuyResult(productDB.buyDevice(GUI.readProduct()));
                     case "3" -> {
                         this.auth.logOut();
@@ -84,7 +83,7 @@ public class Root {
                     }
                     case "7" -> {
                         if(this.auth.getLoggedUser() != null && this.auth.getLoggedUser().getRole() == User.Role.ADMIN) {
-                            GUI.listOfUsersAndAdmins(userDB.getUsers());
+                            GUI.listOfUsers();
                         }
                     }
 

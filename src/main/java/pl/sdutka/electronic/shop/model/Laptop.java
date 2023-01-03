@@ -1,6 +1,6 @@
 package pl.sdutka.electronic.shop.model;
 
-public class Laptop extends Device{
+public final class Laptop extends Device{
     private String Processor;
     private String GraphicCard;
     private String OperatingSystem;

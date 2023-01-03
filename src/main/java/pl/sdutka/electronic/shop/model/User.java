@@ -47,6 +47,7 @@ public class User {
     public void setiD(String iD) {
         this.iD = iD;
     }
+
     public enum Role {
         ADMIN,
         USER
