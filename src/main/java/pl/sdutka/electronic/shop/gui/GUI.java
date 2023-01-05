@@ -44,15 +44,11 @@ public class GUI {
             System.out.println("7. List of users and admins");
         }
 
-
-
         return scanner.nextLine();
     }
-    public static void listDevices(){
+    public static void listOfDevices(){
         ProductDB productDB = ProductDB.getInstance();
-        System.out.println("Name\tPrice\tQuantity");
         productDB.getDevices();
-        System.out.println("\n");
     }
 
     public static String[] readProduct() {
@@ -149,7 +145,6 @@ public class GUI {
 
     public static void listOfUsers(){
         UserDB userDB = UserDB.getInstance();
-        System.out.println("Name\tPrice\tQuantity");
         userDB.getUser();
         System.out.println("\n");
     }

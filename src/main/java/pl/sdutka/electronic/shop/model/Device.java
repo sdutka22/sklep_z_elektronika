@@ -116,6 +116,6 @@ public sealed  class Device permits SmartPhone, SmartWatch, Tablet, Laptop{
                 .append(price)
                 .append(" Quantity: ")
                 .append(productsAmount)
-                .append(" ").toString();
+                .toString();
     }
 }

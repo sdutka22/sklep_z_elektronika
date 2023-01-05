@@ -23,7 +23,8 @@ public class ProductDB {
     }
 
     public void getDevices() {
-        System.out.println(devices.stream().toList());
+        devices.stream().map(Device::toString).forEach(System.out::println);
+        System.out.println("\n");
     }
 
     public boolean buyDevice(String[] deviceNameAndAmount){

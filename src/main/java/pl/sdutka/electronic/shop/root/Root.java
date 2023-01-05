@@ -58,7 +58,7 @@ public class Root {
 
             while (isRunning) {
                 switch (this.gui.showMenu()) {
-                    case "1" -> GUI.listDevices();
+                    case "1" -> GUI.listOfDevices();
                     case "2" -> GUI.showBuyResult(productDB.buyDevice(GUI.readProduct()));
                     case "3" -> {
                         this.auth.logOut();

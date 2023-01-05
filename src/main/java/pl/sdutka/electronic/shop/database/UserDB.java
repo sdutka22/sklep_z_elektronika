@@ -16,7 +16,7 @@ public class UserDB {
     }
 
     public void getUser() {
-        System.out.println(users.stream().toList());
+        users.stream().map(User::toString).forEach(System.out::println);
     }
 
     public User findByLogin(String login) {
